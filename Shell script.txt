@@ -1,0 +1,8 @@
+#!/bin/bash
+
+url="https://www.amfiindia.com/spages/NAVAll.txt"
+output_file="scheme_data.tsv"
+
+curl -s "$url" | grep -v '^#' | awk -F';' 'NF >= 6 { print $4 "\t" $6 }' > "$output_file"
+
+echo "Saved Scheme Name and Asset Value to $output_file"
